@@ -16,7 +16,8 @@ Is a game engine
 - `public $size;` // Size of game
 - `public $mode;` // Level of game
 - `public $mines;` // Number of mine
-- `public $game_matrice;` // Matrix for player representation
+- `public $game_matrice;` // Matrix for player representation.
+    It is a 2D matrix with `#` for unrevealed cell and `count_neighbor_mine` else.
 - `private $mines_matrice;` // Matrix for game
 - `private $mine_placed = false;` // If mine are placed
 
