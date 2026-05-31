@@ -127,7 +127,7 @@ class Game
                         $case[1] < $this->size
                     ) {
                         if ($this->mines_matrice[$case[0]][$case[1]]->type == 1 or $this->mines_matrice[$case[0]][$case[1]]->type == -1) {
-                            $this->mines_matrice[$y][$x]->have_neighbor_mines = true;
+                            $this->mines_matrice[$x][$y]->have_neighbor_mines = true;
                             break;
                         }
                     }
@@ -142,7 +142,7 @@ class Game
             $this->mines_matrice[$x][$y]->revealed = true;
 
             
-            if (!$this->mines_matrice[$y][$x]->have_neighbor_mines) {
+            if (!$this->mines_matrice[$x][$y]->have_neighbor_mines) {
                 $this->game_matrice[$x][$y] = '*';
                 $neighbor = [
                     [$x-1, $y-1], [$x, $y-1], [$x+1, $y-1],
