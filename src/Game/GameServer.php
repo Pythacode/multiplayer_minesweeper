@@ -35,7 +35,7 @@ class GameServer implements MessageComponentInterface
         $action = $data['action'];
 
         if (!isset($this->handlers[$action])) {
-            $from->send(json_encode(['error' => "unknown action: $action"]));
+            $from->send(json_encode(['type' => 'error', 'action' => null, 'message' => "unknown action: $action. See https://https://github.com/Pythacode/multiplayer_minesweeper/blob/main/docs/src/game/WebSowketAPI.md"]));
             return;
         }
 
@@ -56,6 +56,11 @@ class GameServer implements MessageComponentInterface
 
     private function handleReveal(ConnectionInterface $conn, array $data): void
     {
+        if (!isset($data['x']) or !isset($data['x'])) {
+            $conn->send(json_encode(['type' => 'error', 'action' => 'reveal', 'message' => "missing parameter. See https://https://github.com/Pythacode/multiplayer_minesweeper/blob/main/docs/src/game/WebSowketAPI.md"]));
+            return;
+        }
+
         $conn->send(json_encode(['return' => $this->manager->game->reveal(0,0)]));
     }
 }
