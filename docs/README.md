@@ -1,5 +1,5 @@
 # Table of Contents
 
-- ## [Game engine : game.php](game.md)
-- ## [Project architecture](architecture.md)
-- ## [WebSocket API](src/game/WebSowketAPI.md)
+- [Project architecture](architecture.md)
+- [Game engine : game.php](src/game/game.md)
+- [WebSocket API](src/game/WebSowketAPI.md)

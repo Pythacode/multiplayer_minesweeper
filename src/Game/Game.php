@@ -167,14 +167,17 @@ class Game
     }
 
     public function reveal($x, $y) {
+        if ($x >= $this->size or $y >= $this->size or $x < 0 or $y < 0) {
+            return ['success' => false, 'error_message' => 'Invalid coordinates'];
+        }
         if (!$this->mine_placed) {
             $this->place_mine($x, $y);
         }
-        if ($this->mines_matrice[$x][$y]->type == 1 or $this->mines_matrice[$x][$y]->type == -1) {
-            return false;
+        if (!($this->mines_matrice[$x][$y]->type == 0)) {
+            return ['success' => true, 'explode' => true];
         } else {
             $this->deploy($x, $y);
-            return true;
+            return ['success' => true, 'explode' => false];
         }
     }
 }

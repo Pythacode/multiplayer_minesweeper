@@ -7,11 +7,13 @@ use Ratchet\ConnectionInterface;
 
 class GameServer implements MessageComponentInterface
 {
+    private string $doc_url;
     private array $handlers;
     private GameManager $manager;
 
-    public function __construct(GameManager $gameManager)
+    public function __construct(GameManager $gameManager, string $doc_url)
     {
+        $this->doc_url = $doc_url;
         $this->manager = $gameManager;
         $this->handlers = [
             'reveal' => [$this, 'handleReveal'],
@@ -35,7 +37,7 @@ class GameServer implements MessageComponentInterface
         $action = $data['action'];
 
         if (!isset($this->handlers[$action])) {
-            $from->send(json_encode(['type' => 'error', 'action' => null, 'message' => "unknown action: $action. See https://https://github.com/Pythacode/multiplayer_minesweeper/blob/main/docs/src/game/WebSowketAPI.md"]));
+            $from->send(json_encode(['type' => 'error', 'action' => null, 'message' => "unknown action: $action. See " . $doc_url]));
             return;
         }
 
@@ -57,11 +59,11 @@ class GameServer implements MessageComponentInterface
     private function handleReveal(ConnectionInterface $conn, array $data): void
     {
         if (!isset($data['x']) or !isset($data['x'])) {
-            $conn->send(json_encode(['type' => 'error', 'action' => 'reveal', 'message' => "missing parameter. See https://https://github.com/Pythacode/multiplayer_minesweeper/blob/main/docs/src/game/WebSowketAPI.md"]));
+            $conn->send(json_encode(['type' => 'error', 'action' => 'reveal', 'message' => "missing parameter. See " . $doc_url]));
             return;
         }
 
-        $conn->send(json_encode(['return' => $this->manager->game->reveal(0,0)]));
+        $conn->send(json_encode(['type' => 'succes', 'return' => $this->manager->game->reveal(0,0)]));
     }
 }
 

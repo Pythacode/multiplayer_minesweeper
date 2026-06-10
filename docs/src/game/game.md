@@ -42,8 +42,23 @@ Is a game engine
     Reveal the cell arround `$x` `$y` cell.
 
 - #### `public function play($x, $y)`
-    Play the `$x` `$y` cell.
-    Return `false` if cell is  mine, `true` else.
+    Play the `$x` `$y` cell.<br>
+    Returns :
+
+    ```php
+    [
+        "success" => true,
+        "explode" => bool
+    ]
+    ```
+    or on error:
+
+    ```php
+    [
+        "success" => false,
+        "error_message" => string
+    ]
+    ```
 
 
     

@@ -8,12 +8,22 @@ use Ratchet\WebSocket\WsServer;
 use App\Game\GameServer;
 use App\Game\GameManager;
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$required_var = ['API_DOC_URL'];
+foreach ($required_var as $var) {
+    if (!isset($_ENV[$var])) {
+        die("Missing " . $var . " in environment");
+    }
+}
+
 $gameManager = new GameManager();
 
 $server = IoServer::factory(
     new HttpServer(
         new WsServer(
-            new GameServer($gameManager)
+            new GameServer($gameManager, $_ENV['API_DOC_URL'])
         )
     ),
     8080
