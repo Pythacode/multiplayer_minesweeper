@@ -76,7 +76,7 @@ class Game
             $y = rand(0, $this->size-1);
             
             if (!in_array([$x, $y], $neighbor)) {
-                $this->mines_matrice[$y][$x]->type = (rand(0, 1) == 0) ? 1 : -1;
+                $this->mines_matrice[$x][$y]->type = (rand(0, 1) == 0) ? 1 : -1;
                 $placed_mine += 1;
             }
         }
@@ -85,7 +85,7 @@ class Game
     }
 
     private function neighbor_sum($x, $y) {
-        if ($this->mines_matrice[$y][$x]->type == 1 or $this->mines_matrice[$y][$x]->type == -1) {
+        if ($this->mines_matrice[$x][$y]->type == 1 or $this->mines_matrice[$x][$y]->type == -1) {
             return '@';// $this->mines_matrice[$y][$x]->type;
         }
 
@@ -103,7 +103,7 @@ class Game
                 $case[1] >= 0 and
                 $case[1] < $this->size
             ) {
-                $sum += $this->mines_matrice[$case[1]][$case[0]]->type;
+                $sum += $this->mines_matrice[$case[0]][$case[1]]->type;
             }
         };
 
@@ -113,7 +113,7 @@ class Game
     private function create_neighbor_mines_matrice() {
         for ($y=0; $y<$this->size; $y++) {
             for ($x=0; $x<$this->size; $x++) {
-                $this->mines_matrice[$y][$x]->count_neighbor_mine = $this->neighbor_sum($x, $y);
+                $this->mines_matrice[$x][$y]->count_neighbor_mine = $this->neighbor_sum($x, $y);
 
                 $neighbor = [
                     [$x-1, $y-1], [$x, $y-1], [$x+1, $y-1],
@@ -128,8 +128,8 @@ class Game
                         $case[1] >= 0 and
                         $case[1] < $this->size
                     ) {
-                        if ($this->mines_matrice[$case[1]][$case[0]]->type == 1 or $this->mines_matrice[$case[1]][$case[0]]->type == -1) {
-                            $this->mines_matrice[$y][$x]->have_neighbor_mines = true;
+                        if ($this->mines_matrice[$case[0]][$case[1]]->type == 1 or $this->mines_matrice[$case[0]][$case[1]]->type == -1) {
+                            $this->mines_matrice[$x][$y]->have_neighbor_mines = true;
                             break;
                         }
                     }
@@ -140,11 +140,12 @@ class Game
 
     private function deploy($x,$y) {
         if (!$this->mines_matrice[$x][$y]->revealed) {
-            $this->game_matrice[$y][$x] = $this->mines_matrice[$y][$x]->count_neighbor_mine;
+            $this->game_matrice[$x][$y] = $this->mines_matrice[$x][$y]->count_neighbor_mine;
             $this->mines_matrice[$x][$y]->revealed = true;
 
             
-            if (!$this->mines_matrice[$y][$x]->have_neighbor_mines) {
+            if (!$this->mines_matrice[$x][$y]->have_neighbor_mines) {
+                $this->game_matrice[$x][$y] = '*';
                 $neighbor = [
                     [$x-1, $y-1], [$x, $y-1], [$x+1, $y-1],
                     [$x-1, $y], [$x+1, $y],
@@ -156,7 +157,7 @@ class Game
                         $case[0] < $this->size and
                         $case[1] >= 0 and
                         $case[1] < $this->size and
-                        !$this->mines_matrice[$case[1]][$case[0]]->revealed
+                        !$this->mines_matrice[$case[0]][$case[1]]->revealed
                     ) {
                         $this->deploy($case[0], $case[1]);
                     }
@@ -169,7 +170,7 @@ class Game
         if (!$this->mine_placed) {
             $this->place_mine($x, $y);
         }
-        if ($this->mines_matrice[$y][$x]->type == 1 or $this->mines_matrice[$y][$x]->type == -1) {
+        if ($this->mines_matrice[$x][$y]->type == 1 or $this->mines_matrice[$x][$y]->type == -1) {
             return false;
         } else {
             $this->deploy($x, $y);
