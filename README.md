@@ -8,3 +8,19 @@
 </div>
 
 [Documentation](./docs/README.md)
+
+# Instalation 
+
+## Cloner le projet
+
+```bash
+git clone https://github.com/Pythacode/multiplayer_minesweeper.git
+cd multiplayer_minesweeper
+```
+
+## Installer les dépendances
+
+Executer à la racine du projet
+```bash
+composer install
+```

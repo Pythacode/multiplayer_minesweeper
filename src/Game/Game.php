@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Game;
+
 class Cell
 {
     public $type = 0;
@@ -163,7 +165,7 @@ class Game
         }
     }
 
-    public function play($x, $y) {
+    public function reveal($x, $y) {
         if (!$this->mine_placed) {
             $this->place_mine($x, $y);
         }
@@ -175,8 +177,5 @@ class Game
         }
     }
 }
-
-$game = new Game();
-$game->play(0, 0);
 
 ?>
