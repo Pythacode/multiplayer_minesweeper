@@ -17,6 +17,7 @@ class GameServer implements MessageComponentInterface
         $this->manager = $gameManager;
         $this->handlers = [
             'reveal' => [$this, 'handleReveal'],
+            'getGrid' => [$this, 'handlerGetGrid'],
         ];
     }
 
@@ -64,6 +65,11 @@ class GameServer implements MessageComponentInterface
         }
 
         $conn->send(json_encode(['type' => 'succes', 'return' => $this->manager->game->reveal(0,0)]));
+    }
+
+    private function handlerGetGrid(ConnectionInterface $conn, array $data): void
+    {
+        $conn->send(json_encode(['type' => 'succes', 'return' => $this->manager->game->game_matrice]));
     }
 }
 
