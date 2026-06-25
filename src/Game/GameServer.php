@@ -38,7 +38,7 @@ class GameServer implements MessageComponentInterface
         $action = $data['action'];
 
         if (!isset($this->handlers[$action])) {
-            $from->send(json_encode(['type' => 'error', 'action' => null, 'message' => "unknown action: $action. See " . $doc_url]));
+            $from->send(json_encode(['type' => 'error', 'action' => null, 'message' => "unknown action: $action. See " . $this->doc_url]));
             return;
         }
 
