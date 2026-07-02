@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" href="theCSS.css">
+    <link rel="stylesheet" href="res/css/theCSS.css">
     <title>E</title>
 </head>
 <html>
@@ -14,7 +14,9 @@
             // $_SERVER['DOCUMENT_ROOT'] -> Racine du site
             // . -> concaténtion
 
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/src/Game/GameManager';
+            require_once $_SERVER['DOCUMENT_ROOT'] . 'src/Game/GameManager.php';
+
+            use App\Game\GameManager;
 
             $gameManager = new GameManager();
             $size = $gameManager->getSize();
