@@ -10,6 +10,7 @@
             require 'vendor/autoload.php';
 
             use App\Game\GameManager;
+            use App\Game\GameServer;
 
             $gameManager = new GameManager();
             $size = $gameManager->getSize();
