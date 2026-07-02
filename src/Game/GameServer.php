@@ -5,7 +5,7 @@ namespace App\Game;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
-/*
+
 class GameServer implements MessageComponentInterface
 {
     private string $doc_url;
@@ -74,5 +74,5 @@ class GameServer implements MessageComponentInterface
         $conn->send(json_encode(['type' => 'succes', 'return' => $this->manager->game->game_matrice]));
     }
 }
-*/
+
 ?>

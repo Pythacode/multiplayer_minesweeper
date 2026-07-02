@@ -54,7 +54,7 @@ body {
 }
 
 #mBlank {
-    background-color: white;
+    background-color: #bbbbbb;
     color: #00000011;
 }
 
@@ -64,6 +64,6 @@ body {
 }
 
 #mHidden {
-    background-color: blue;
+    background-color: white;
     color: #00000011;
 }
