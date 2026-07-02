@@ -29,5 +29,9 @@ $server = IoServer::factory(
     8080
 );
 
-echo "Server started on port 8080\n";
+echo "Server starting on port 8080\n";
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL | E_STRICT);
 $server->run();
+echo "Server running on port 8080\n";

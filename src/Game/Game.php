@@ -76,7 +76,8 @@ class Game
             $y = rand(0, $this->size-1);
             
             if (!in_array([$x, $y], $neighbor)) {
-                $this->mines_matrice[$x][$y]->type = (rand(0, 1) == 0) ? 1 : -1;
+                $this->mines_matrice[$x][$y]->type = 1;
+                //$this->mines_matrice[$x][$y]->type = (rand(0, 1) == 0) ? 1 : -1;
                 $placed_mine += 1;
             }
         }
@@ -143,7 +144,6 @@ class Game
             $this->game_matrice[$x][$y] = $this->mines_matrice[$x][$y]->count_neighbor_mine;
             $this->mines_matrice[$x][$y]->revealed = true;
 
-            
             if (!$this->mines_matrice[$x][$y]->have_neighbor_mines) {
                 $this->game_matrice[$x][$y] = '*';
                 $neighbor = [
@@ -179,6 +179,14 @@ class Game
             $this->deploy($x, $y);
             return ['success' => true, 'explode' => false];
         }
+    }
+
+    public function getXY($x, $y) {
+        return $this->game_matrice[$x][$y];
+    }
+
+    public function getSize() {
+        return $this->size;
     }
 }
 

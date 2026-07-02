@@ -1,0 +1,69 @@
+body {
+    font-size: 40px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#aDiv {
+    background-color: #aaaaaa;
+    color: black;
+}
+
+#m1 {
+    background-color: blue;
+    color: white;
+}
+
+#m2 {
+    background-color: limegreen;
+    color: black;
+}
+
+#m3 {
+    background-color: #aa0000;
+    color: white;
+}
+
+#m4 {
+    background-color: purple;
+    color: white;
+}
+
+#m5 {
+    background-color: black;
+    color: white;
+}
+
+#m6 {
+    background-color: aqua;
+    color: black;
+}
+
+#m7 {
+    background-color: lightgray;
+    color: black;
+}
+
+#m8 {
+    background-color: gray;
+    color: white;
+}
+
+#m9 {
+    background-color: #ff00ff;
+    color: black;
+}
+
+#mBlank {
+    background-color: white;
+    color: #00000011;
+}
+
+#mMine {
+    background-color: red;
+    color: black;
+}
+
+#mHidden {
+    background-color: blue;
+    color: #00000011;
+}
