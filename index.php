@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="res/css/theCSS.css">
-    <title>E</title>
+    <title>Minesweeper</title>
 </head>
 <html>
     <body>
-    
+        <div id=gameboard>
         <?php
             require 'vendor/autoload.php';
 
@@ -23,19 +23,24 @@
 
             $gameManager->reveal(0,0);
 
-            for ($i = 0; $i < $size; $i++) {
-                echo "<div>";
-                for ($j = 0; $j < $size; $j++) {
-                    echo "<span id=" . $gameManager->getDiv($i,$j) . ">";
-                    echo $gameManager->getAtXY($i,$j);
-                    echo "</span>";
+            function refresh($gameManager,$size) {
+                for ($i = 0; $i < $size; $i++) {
+                    echo "<div>";
+                    for ($j = 0; $j < $size; $j++) {
+                        echo "<span class=\"cell\" id=" . $gameManager->getDiv($i,$j) . ">";
+                        echo $gameManager->getAtXY($i,$j);
+                        echo "</span>";
+                    }
+                    echo "</div>";
                 }
-                echo "</div>";
             }
+
+            refresh($gameManager,$size);
 
             echo "\n";
             echo "--------------------------";
-        ?>
 
+        ?>
+        </div>
     </body>
 </html>
