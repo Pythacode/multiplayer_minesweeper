@@ -91,3 +91,37 @@ function updateTile(x,y,oldValue,newValue) {
         console.log("WARNING : hollow update (at "+x+", "+y+" with value="+oldValue+")");
     }
 }
+
+function refreshBoard(x,y,oldValue,newValue/*unused*/) {
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var ans = xmlhttp.responseText;
+            console.log("["+ans+"]");
+            updateTile(x,y,oldValue,ans);
+            if(ans == '.') {
+
+            }
+        }
+    };
+
+    xmlhttp.open("GET", "server.php?x="+x+"&y="+y+"&reveal=0", true);
+    xmlhttp.send();
+    //console.log("refreshOK?");
+}
+
+function tileClicked(x,y,oldValue,newValue/*unused*/) {
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log("{{"+xmlhttp.responseText+"}}");
+            refreshBoard(x,y,oldValue,newValue);
+        }
+    };
+
+    xmlhttp.open("GET", "server.php?x="+x+"&y="+y+"&reveal=1", true);
+    xmlhttp.send();
+    //console.log("ok?");
+}

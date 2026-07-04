@@ -8,6 +8,8 @@
     <body>
         <div id=gameboard>
         <?php
+            include 'server.php';
+
             // this part initializes the grid on the HTML side
             // it creates the <div> and <span> for each cell
             require 'vendor/autoload.php';
@@ -18,11 +20,6 @@
             $yu = $_REQUEST["y"];
 
             use App\Game\GameManager;
-
-            $gameManager = new GameManager();
-            $size = $gameManager->getSize();
-
-            $gameManager->reveal(0,0);
 
             function refresh($gameManager,$size) {
                 for ($i = 0; $i < $size; $i++) {
