@@ -1,30 +1,16 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" href="res/css/theCSS.css">
+    <link rel="stylesheet" href="theCSS.css">
     <title>Minesweeper</title>
-    <script>
-        function updateBoard(x,y) {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("txtHint").innerHTML = "hellow";
-                }
-            };
-            xmlhttp.open("GET", "index.php?x="+x+"&y="+y, true);
-            xmlhttp.send();
-        }
-    </script>
+    <script src="code.js"></script>
 </head>
 <html>
     <body>
         <div id=gameboard>
         <?php
+            // this part initializes the grid on the HTML side
+            // it creates the <div> and <span> for each cell
             require 'vendor/autoload.php';
-
-            // require -> erreur si le fichier exsiste ps
-            // _once -> charge ps le fichier si il est déjà chargé
-            // $_SERVER['DOCUMENT_ROOT'] -> Racine du site
-            // . -> concaténation
 
             require_once $_SERVER['DOCUMENT_ROOT'] . 'src/Game/GameManager.php';
 
@@ -42,7 +28,13 @@
                 for ($i = 0; $i < $size; $i++) {
                     echo "<div>";
                     for ($j = 0; $j < $size; $j++) {
-                        echo "<span onclick=\"updateBoard(3,3);\" class=\"cell\" id=" . $gameManager->getDiv($i,$j) . ">";
+                        echo "<span data-x=";
+                        echo $i; echo " data-y="; echo $j;
+                        echo " onclick=\"updateTile(this.dataset.x,this.dataset.y,this.innerHTML,0);\" class=\"cell ";
+                        echo $gameManager->getDiv($i,$j);
+                        echo "\" id=_";
+                        echo $i; echo "_"; echo $j;
+                        echo "_>";
                         echo $gameManager->getAtXY($i,$j);
                         echo "</span>";
                     }

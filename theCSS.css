@@ -18,62 +18,62 @@ body {
     border-color:#000000ff;
 }
 
-#m1 {
+.cell.m1 {
     background-color: blue;
     color: white;
 }
 
-#m2 {
+.cell.m2 {
     background-color: limegreen;
     color: black;
 }
 
-#m3 {
+.cell.m3 {
     background-color: #aa0000;
     color: white;
 }
 
-#m4 {
+.cell.m4 {
     background-color: purple;
     color: white;
 }
 
-#m5 {
+.cell.m5 {
     background-color: black;
     color: white;
 }
 
-#m6 {
+.cell.m6 {
     background-color: aqua;
     color: black;
 }
 
-#m7 {
+.cell.m7 {
     background-color: lightgray;
     color: black;
 }
 
-#m8 {
+.cell.m8 {
     background-color: gray;
     color: white;
 }
 
-#m9 {
+.cell.m9 {
     background-color: #ff00ff;
     color: black;
 }
 
-#mBlank {
+.cell.mBlank {
     background-color: #bbbbbb;
     color: #00000000;
 }
 
-#mMine {
+.cell.mMine {
     background-color: red;
     color: black;
 }
 
-#mHidden {
+.cell.mHidden {
     background-color: white;
     color: #00000011;
     border-color: #888888;
