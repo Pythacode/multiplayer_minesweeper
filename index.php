@@ -21,13 +21,16 @@
 
             use App\Game\GameManager;
 
-            function refresh($gameManager,$size) {
+            function initialize_grid($gameManager,$size) {
                 for ($i = 0; $i < $size; $i++) {
                     echo "<div>";
                     for ($j = 0; $j < $size; $j++) {
                         echo "<span data-x=";
                         echo $i; echo " data-y="; echo $j;
-                        echo " onclick=\"updateTile(this.dataset.x,this.dataset.y,this.innerHTML,0);\" class=\"cell ";
+                        //echo " onclick=\"updateTile(this.dataset.x,this.dataset.y,this.innerHTML,0);\" class=\"cell ";
+                        echo " onclick=\"updateTheWholeMap(";
+                        echo $size;
+                        echo ");\" class=\"cell ";
                         echo $gameManager->getDiv($i,$j);
                         echo "\" id=_";
                         echo $i; echo "_"; echo $j;
@@ -39,7 +42,7 @@
                 }
             }
 
-            refresh($gameManager,$size);
+            initialize_grid($gameManager,$size);
 
             echo "\n";
             echo "-------------------------- ";

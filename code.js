@@ -125,3 +125,14 @@ function tileClicked(x,y,oldValue,newValue/*unused*/) {
     xmlhttp.send();
     //console.log("ok?");
 }
+
+function updateTheWholeMap(size) {
+    // update the visuals of the whole grid
+    console.log("updating...");
+    for(var i=0; i<size; i++) {
+        for(var j=0; j<size; j++) {
+            refreshBoard(i,j,document.getElementById("_"+i+"_"+j+"_").innerText,0);
+        }
+    }
+    console.log("done!");
+}
