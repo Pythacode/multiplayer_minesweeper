@@ -1,3 +1,6 @@
+const match = window.location.pathname.match(/^\/party\/([^\/]+)/);
+const party_id = match ? match[1] : null;
+
 function updateBoard() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {

@@ -1,0 +1,3 @@
+RewriteEngine On
+
+RewriteRule ^party/(.*)$ party/index.php?title=$1 [L,QSA]

@@ -1,1 +1,1 @@
-include_once './res/html/party.html'
+<a href="/party/id-de-la-partie-c-pas-encore-implementé">ca a bougé</a>
