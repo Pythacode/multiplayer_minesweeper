@@ -14,7 +14,7 @@
             // it creates the <div> and <span> for each cell
             require 'vendor/autoload.php';
 
-            require_once $_SERVER['DOCUMENT_ROOT'] . 'src/Game/GameManager.php';
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/src/Game/GameManager.php';
 
             $xu = $_REQUEST["x"];
             $yu = $_REQUEST["y"];
